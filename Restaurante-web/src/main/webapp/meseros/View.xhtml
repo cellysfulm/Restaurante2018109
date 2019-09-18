@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewMeserosTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewMeserosLabel_idmeseros}"/>
+                    <h:outputText value="#{meserosController.selected.idmeseros}" title="#{bundle.ViewMeserosTitle_idmeseros}"/>
+                    <h:outputText value="#{bundle.ViewMeserosLabel_nombre}"/>
+                    <h:outputText value="#{meserosController.selected.nombre}" title="#{bundle.ViewMeserosTitle_nombre}"/>
+                    <h:outputText value="#{bundle.ViewMeserosLabel_idmesa}"/>
+                    <h:outputText value="#{meserosController.selected.idmesa}" title="#{bundle.ViewMeserosTitle_idmesa}"/>
+                    <h:outputText value="#{bundle.ViewMeserosLabel_idpedido}"/>
+                    <h:outputText value="#{meserosController.selected.idpedido}" title="#{bundle.ViewMeserosTitle_idpedido}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{meserosController.destroyAndView}" value="#{bundle.ViewMeserosDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewMeserosEditLink}"/>
+                <br />
+                <h:commandLink action="#{meserosController.prepareCreate}" value="#{bundle.ViewMeserosCreateLink}" />
+                <br />
+                <h:commandLink action="#{meserosController.prepareList}" value="#{bundle.ViewMeserosShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewMeserosIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

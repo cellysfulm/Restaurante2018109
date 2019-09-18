@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateFacturasTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateFacturasLabel_idfacturas}" for="idfacturas" />
+                    <h:inputText id="idfacturas" value="#{facturasController.selected.idfacturas}" title="#{bundle.CreateFacturasTitle_idfacturas}" required="true" requiredMessage="#{bundle.CreateFacturasRequiredMessage_idfacturas}"/>
+                    <h:outputLabel value="#{bundle.CreateFacturasLabel_total}" for="total" />
+                    <h:inputText id="total" value="#{facturasController.selected.total}" title="#{bundle.CreateFacturasTitle_total}" required="true" requiredMessage="#{bundle.CreateFacturasRequiredMessage_total}"/>
+                    <h:outputLabel value="#{bundle.CreateFacturasLabel_idclientes}" for="idclientes" />
+                    <h:selectOneMenu id="idclientes" value="#{facturasController.selected.idclientes}" title="#{bundle.CreateFacturasTitle_idclientes}" required="true" requiredMessage="#{bundle.CreateFacturasRequiredMessage_idclientes}">
+                        <f:selectItems value="#{clientesController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateFacturasLabel_idpedido}" for="idpedido" />
+                    <h:selectOneMenu id="idpedido" value="#{facturasController.selected.idpedido}" title="#{bundle.CreateFacturasTitle_idpedido}" required="true" requiredMessage="#{bundle.CreateFacturasRequiredMessage_idpedido}">
+                        <f:selectItems value="#{pedidosController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{facturasController.create}" value="#{bundle.CreateFacturasSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{facturasController.prepareList}" value="#{bundle.CreateFacturasShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateFacturasIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
